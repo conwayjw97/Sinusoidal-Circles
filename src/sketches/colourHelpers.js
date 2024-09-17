@@ -27,3 +27,21 @@ export function adjustBrightness(colour, brightnessOffset) {
   const outColour = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   return outColour;
 }
+export function createColoursArray(coloursList, canvasSize) {
+  if (coloursList.length > 1) {
+    let colours = [];
+    const percent = 1 / (canvasSize / (coloursList.length - 1));
+    for (let i = 0; i < coloursList.length - 1; i++) {
+      let j = 0;
+      while (j <= 1) {
+        const colour1 = coloursList[i];
+        const colour2 = coloursList[i + 1];
+        colours.push(interpolateColours(colour1, colour2, j));
+        j += percent;
+      }
+    }
+    return colours;
+  } else {
+    return [coloursList[0]];
+  }
+}
