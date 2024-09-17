@@ -27,6 +27,7 @@ export function adjustBrightness(colour, brightnessOffset) {
   const outColour = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   return outColour;
 }
+
 export function createColoursArray(coloursList, canvasSize) {
   if (coloursList.length > 1) {
     let colours = [];
