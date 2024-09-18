@@ -28,7 +28,7 @@ export function adjustBrightness(colour, brightnessOffset) {
   return outColour;
 }
 
-export function createColoursArray(coloursList, canvasSize) {
+export function createRenderColours(coloursList, canvasSize) {
   if (coloursList.length > 1) {
     let colours = [];
     const percent = 1 / (canvasSize / (coloursList.length - 1));
