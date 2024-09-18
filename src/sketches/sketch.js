@@ -10,8 +10,8 @@ export default function sketch(p) {
   let animationState1 = 0;
   let animationState2 = 0;
 
-  let firstColours = ["#7dbeff", "#ff8c00", "#007f00"];
-  let secondColours = ["#ffffff", "#ff8c00", "#ff0000"];
+  let firstColours = ["#ffffff", "#ff8c00", "#ff0000"]; 
+  let secondColours = ["#7dbeff", "#ff8c00", "#007f00"];
   let circleStartSizeVariation = 100;
   let circleSizeVariation = 100;
   let sizeRandVariation = 50;
@@ -46,8 +46,7 @@ export default function sketch(p) {
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight, p.P2D);
-    // p.strokeWeight(0.1);
-    p.noStroke();
+    p.strokeWeight(0.1);
     p.textSize(100)
     init();
   }
@@ -65,7 +64,7 @@ export default function sketch(p) {
       const interpolatedColour = interpolateColours(renderColours1[y], renderColours2[y], p.map(animationState2, 0, 100, 0, 1));
       let colour = adjustBrightness(interpolatedColour, colourOffsets[y]); // Adjust for colour variation
       const saturationAnimationOffset = Math.round(p.map(animationState1, 0, 100, 50, saturationOffset));
-      colour = adjustBrightness(colour, saturationOffset); // Adjust for saturation variation
+      colour = adjustBrightness(colour, saturationAnimationOffset); // Adjust for saturation variation
       p.fill(colour);
 
       const angle = offset + y * freq;
