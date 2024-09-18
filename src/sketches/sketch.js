@@ -59,13 +59,14 @@ export default function sketch(p) {
     p.background(0);
     for (let y = 0; y < p.windowHeight; y++) {
       let colour = adjustBrightness(renderColours[y], colourOffsets[y]); // Adjust for colour variation
-      colour = adjustBrightness(colour, saturationOffset); // Adjust for saturation variation
+      const saturationAnimationOffset = Math.round(p.map(animationState, 0, 100, 255, saturationOffset));
+      colour = adjustBrightness(colour, saturationAnimationOffset); // Adjust for saturation variation
       p.fill(colour);
 
       const angle = offset + y * freq;
       const x = p.map(p.sin(angle), -strum, strum, 50, p.windowWidth - 50);
       const offsetY = p.map(y, 0, p.windowHeight, -50, p.windowHeight + 50);
-      const circleSize = p.map(animationState, 0, 100, circleSizes[y]-50, circleSizes[y]);
+      const circleSize = p.map(animationState, 0, 100, 10, circleSizes[y]);
       p.circle(x, offsetY, circleSize);
     }
     offset += speed;
